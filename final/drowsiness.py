@@ -89,15 +89,9 @@ def calculate_EAR(eye):
 	return ear_aspect_ratio
 
 def extract_eye_coords(face_landmarks):
-    left_eye_coords = []
-    right_eye_coords = []
-    for n in range(36, 42):
-        x, y = face_landmarks.part(n).x, face_landmarks.part(n).y
-        left_eye_coords.append((x, y))
-    for n in range(42, 48):
-        x, y = face_landmarks.part(n).x, face_landmarks.part(n).y
-        right_eye_coords.append((x, y))
-    return np.array(left_eye_coords), np.array(right_eye_coords)
+    left_eye = np.array([(face_landmarks.part(n).x, face_landmarks.part(n).y) for n in range(36, 42)])
+    right_eye = np.array([(face_landmarks.part(n).x, face_landmarks.part(n).y) for n in range(42, 48)])
+    return left_eye, right_eye
 
 def are_closed(faces, dlib, gray):
     for face in faces:
