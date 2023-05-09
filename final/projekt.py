@@ -28,7 +28,7 @@ def calculate_ear():
     frame = picam2.capture_array()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     ear_value = are_closed(hog_face_detector(gray), dlib_facelandmark, gray)
-    label_widget.after(2000, calculate_ear)
+    label_widget.after(1000, calculate_ear)
 
 def open_camera():
   
@@ -69,7 +69,7 @@ def open_camera():
     label_widget.configure(image=photo_image)
   
     # Repeat the same process after every 10 seconds
-    label_widget.after(100, open_camera)
+    label_widget.after(10, open_camera)
 
 """
 OpenCV Funkcie
@@ -118,7 +118,7 @@ dlib_facelandmark = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat"
 #nacita nahodne slovo z txt suboru
 word = pick_word()
 
-# Create a GUI app
+# vytvori GUI aplikaciu
 app = tk.Tk()
 
 app.title("Blind Writing")
@@ -132,7 +132,7 @@ label_widget.pack()
 
 button1 = tk.Button(app, text="Start", command=open_camera)
 button1.pack()
-label_widget.after(2000, calculate_ear)
+label_widget.after(1000, calculate_ear)
 
 input_field = tk.Entry(app)
 input_field.pack()   

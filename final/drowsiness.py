@@ -30,7 +30,7 @@ def calculate_ear():
     _, frame = cap.read()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     ear_value = are_closed(hog_face_detector(gray), dlib_facelandmark, gray)
-    label_widget.after(2000, calculate_ear)
+    label_widget.after(1000, calculate_ear)
 
 def open_camera():
   
@@ -70,7 +70,7 @@ def open_camera():
     label_widget.configure(image=photo_image)
   
     # Repeat the same process after every 10 seconds
-    label_widget.after(500, open_camera)
+    label_widget.after(10, open_camera)
 
 """
 OpenCV Funkcie
@@ -108,11 +108,7 @@ def are_closed(faces, dlib, gray):
 
 cap = cv2.VideoCapture(0)
 # Declare the width and height in variables
-width, height = 800, 600
-  
-# Set the width and height
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
+
 
 #detectors
 hog_face_detector = dlib.get_frontal_face_detector()
@@ -135,7 +131,7 @@ label_widget.pack()
 
 button1 = tk.Button(app, text="Start", command=open_camera)
 button1.pack()
-label_widget.after(2000, calculate_ear)
+label_widget.after(1000, calculate_ear)
 
 input_field = tk.Entry(app)
 input_field.pack()   
